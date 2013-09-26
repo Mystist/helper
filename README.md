@@ -10,5 +10,8 @@ Contact me for more information:
 
 # Change Log
 
+## 2013-09-26
+Add function `loopTree`.
+
 ## 2013-04-25  
 Initial release.
