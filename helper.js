@@ -106,6 +106,23 @@
         callback(obj);
       }
     }
+  },
+  
+  // Provide by vendor, Copyright unknown. Did some modification.
+  serializeObject : function(serializedArr) {
+    var o = {};
+    var a = serializedArr;
+    for(var i=0; i<a.length; i++) {
+      if (o[a[i].name] !== undefined) {
+        if (!o[a[i].name].push) {
+          o[a[i].name] = [o[a[i].name]];
+        }
+        o[a[i].name].push(a[i].value || "");
+      } else {
+        o[a[i].name] = a[i].value || "";
+      }
+    }
+    return o;
   }
   
 }
