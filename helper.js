@@ -6,8 +6,9 @@
     if(time == null || time == "") {
       return "";
     }
-    if(typeof time === "string") {			
-      time = new Date( Date.parse(time.replace(/-/g, "/")) );
+    if(typeof time === "string") {
+      var theTime = time.slice(0, 10) + " " + time.slice(11, 19);
+      time = new Date( Date.parse(theTime.replace(/-/g, "/")) );
     }
     switch(type) {
       case "year" :
@@ -125,20 +126,18 @@
     return o;
   },
   
-  // http://stackoverflow.com/questions/133925/javascript-post-request-like-a-form-submit
-  postToUrl : function(path, params, method) {
-    method = method || "post";
+  // http://stackoverflow.com/questions/133925/javascript-post-request-like-a-form-submit. Did a few modification.
+  postToUrl : function(attrObj, paramObj) {
     var form = document.createElement("form");
-    form.setAttribute("method", method);
-    form.setAttribute("action", path);
-    for(var key in params) {
-      if(params.hasOwnProperty(key)) {
-        var hiddenField = document.createElement("input");
-        hiddenField.setAttribute("type", "hidden");
-        hiddenField.setAttribute("name", key);
-        hiddenField.setAttribute("value", params[key]);
-        form.appendChild(hiddenField);
-       }
+    for(var key in attrObj) {
+      form.setAttribute(key, attrObj[key]);
+    }
+    for(var key in paramObj) {
+      var hiddenField = document.createElement("input");
+      hiddenField.setAttribute("type", key=="file"?"file":"hidden");
+      hiddenField.setAttribute("name", key);
+      hiddenField.setAttribute("value", paramObj[key]);
+      form.appendChild(hiddenField);
     }
     document.body.appendChild(form);
     form.submit();
