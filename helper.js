@@ -141,6 +141,23 @@
     }
     document.body.appendChild(form);
     form.submit();
+  },
+  
+  plusArray: function(arr1, arr2) {
+    var arr = [];
+    for(var i =0; i < arr1.length; i++) {
+      arr.push(arr1[i]);
+    }
+    for(var i =0; i < arr2.length; i++) {
+      arr.push(arr2[i]);
+    }
+    return arr;
+  },
+  
+  removeItemFromArrayAtIndex: function(arr, index) {
+    var arr1 = arr.slice(0, index);
+    var arr2 = arr.slice(index+1);
+    return this.plusArray(arr1, arr2);
   }
   
 }
