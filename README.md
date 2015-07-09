@@ -1,4 +1,4 @@
-## Javascript Helper!
+# Javascript Helper!
 
 Welcome to contribute to it!
 
